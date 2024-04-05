@@ -6,9 +6,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
-import javax.swing.table.TableModel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JLabel;
@@ -19,13 +16,11 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.ObjectInputFilter.Status;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -38,7 +33,7 @@ public class B3_1 extends JFrame {
 	private JTextField textField_1;
 	private JTextField textField_2;
 
-	SQLConnect conn = new SQLConnect();
+	SQLConnect conn = new SQLConnect("QLKH_Java");
 	
 	List<String> columns = new ArrayList<String>();
 	List<List<Object>> data = new ArrayList<List<Object>>();
