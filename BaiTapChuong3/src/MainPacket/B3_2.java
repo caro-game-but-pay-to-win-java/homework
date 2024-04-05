@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
@@ -194,18 +195,50 @@ public class B3_2 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if (status == 1) {
+					if (textField_1.getText().equals("") || textField_2.getText().equals("") || textField_3.getText().equals("")) {
+						JOptionPane.showMessageDialog(new JFrame(),  "Không được để trống trường dữ liệu!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+						return;
+					}
 					try {
-
+						String name = textField_1.getText();
+						String cate = textField_2.getText();
+						String year = textField_3.getText();
+						Statement stm = conn.getConnection().createStatement();
+						stm.execute("insert into CDDVDCollection values (N'" + name +  "', '" + cate + "', " + year + ")");
+						QDatabase();
+						JOptionPane.showMessageDialog(new JFrame(),  "Thêm thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+						table.setEnabled(true);
 					} catch (Exception ex) {
 						ex.printStackTrace();
+						JOptionPane.showMessageDialog(new JFrame(),  "Lỗi không xác định!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+						table.setEnabled(true);
 					}
 				} else if (status == 0) {
 					try {
-
+						String id = textField.getText();
+						String name = textField_1.getText();
+						String cate = textField_2.getText();
+						String year = textField_3.getText();
+						Statement stm = conn.getConnection().createStatement();
+						stm.execute("update CDDVDCollection "
+								+ "set TieuDe = '" + name + "',"
+										+ "LoaiDia = '" + cate +"',"
+												+ "NamXuatBan = " + year + " "
+														+ "where Ma = " + id);
+						QDatabase();
+						JOptionPane.showMessageDialog(new JFrame(),  "Sửa thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+						table.setEnabled(true);
 					} catch (Exception ex) {
 						ex.printStackTrace();
+						JOptionPane.showMessageDialog(new JFrame(),  "Lỗi không xác định!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+						table.setEnabled(true);
 					}
 				}
+				status = 0;
+				btnTmKim.setEnabled(true);
+				table.setEnabled(true);
+				btnLu.setEnabled(false);
+				btnNewButton.setText("THÊM");
 			}
 		});
 		btnXa.addActionListener(new ActionListener() {
