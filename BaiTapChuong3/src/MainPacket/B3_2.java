@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -238,7 +240,12 @@ public class B3_2 extends JFrame {
 				btnTmKim.setEnabled(true);
 				table.setEnabled(true);
 				btnLu.setEnabled(false);
+				btnXa.setEnabled(false);
 				btnNewButton.setText("THÊM");
+				textField.setText("");
+				textField_1.setText("");
+				textField_2.setText("");
+				textField_3.setText("");
 			}
 		});
 		btnXa.addActionListener(new ActionListener() {
@@ -246,7 +253,26 @@ public class B3_2 extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-
+				if (table.isEnabled()) {
+					String id = textField.getText();
+					if (!id.equals("")) {
+						try {							
+							Statement stm = conn.getConnection().createStatement();
+							stm.execute("delete from CDDVDCollection where Ma = " + id);
+							JOptionPane.showMessageDialog(new JFrame(),  "Xóa thành công!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+							QDatabase();
+						} catch (Exception ex) {
+							ex.printStackTrace();
+							JOptionPane.showMessageDialog(new JFrame(), "Lỗi không xác định!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+						}
+					}
+				}
+				textField.setText("");
+				textField_1.setText("");
+				textField_2.setText("");
+				textField_3.setText("");
+				btnLu.setEnabled(false);
+				btnXa.setEnabled(false);
 			}
 		});
 		btnTmKim.addActionListener(new ActionListener() {
@@ -254,7 +280,15 @@ public class B3_2 extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-
+				B3_2.this.setVisible(false);
+				JFrame frame = new B3_2_SearchFrame(B3_2.this);
+				frame.setVisible(true);
+				frame.addWindowListener(new WindowAdapter(){
+					@Override
+					public void windowClosed(WindowEvent e) {
+						B3_2.this.setVisible(true);
+					}
+				});
 			}
 		});
 	}
