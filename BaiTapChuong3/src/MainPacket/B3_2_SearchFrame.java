@@ -75,6 +75,7 @@ public class B3_2_SearchFrame extends JFrame {
 				}
 			}
 		});
+		
 		btnTmKim.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnTmKim.setBounds(302, 26, 115, 26);
 		contentPane.add(btnTmKim);
@@ -213,7 +214,6 @@ public class B3_2_SearchFrame extends JFrame {
 				}
 				model.addRow(currRow.toArray());
 			}
-
 			table.setModel(model);
 			model = (DefaultTableModel) table.getModel();
 			tblRowSorter = new TableRowSorter<TableModel>(table.getModel());

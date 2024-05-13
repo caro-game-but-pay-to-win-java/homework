@@ -20,9 +20,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.IntStream;
 import java.awt.event.ActionEvent;
 
 public class DangKyLopNangKhieu extends JFrame {
@@ -36,6 +39,7 @@ public class DangKyLopNangKhieu extends JFrame {
 	private String filePath = "src\\MainPacket\\Input_de2.txt";
 	private String textToSetToPrint = "";
 	private Hashtable<String, Integer> hashMap = new Hashtable<String, Integer>();
+	private List<Integer> a = new ArrayList<Integer>();
 	/**
 	 * Launch the application.
 	 */
@@ -55,7 +59,7 @@ public class DangKyLopNangKhieu extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public DangKyLopNangKhieu() {
+	public DangKyLopNangKhieu() {		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 650);
 		this.setTitle("Đăng ký lớp năng khiếu");
