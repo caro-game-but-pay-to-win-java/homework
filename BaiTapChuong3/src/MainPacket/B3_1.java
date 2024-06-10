@@ -145,7 +145,6 @@ public class B3_1 extends JFrame {
 						currentCol = col;
 					}
 				}
-				
 			}
 		});
 		btnNewButton.addActionListener(new ActionListener() {
